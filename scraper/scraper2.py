@@ -34,4 +34,7 @@ print('Page loaded')
 time.sleep(5)
 # element = driver.find_elements_by_xpath('/html/body/div[7]/div[1]/section[1]/div/div/div/div/div[1]/div[2]/div/div/nav/div/div/a[1]/div/p[2]')
 element2 = driver.find_element_by_xpath('//*[@id="liveindexTable"]')
-print(element2.text)
+# print(element2.text)
+
+f1 = open('test.txt', 'w')
+f1.write(element2.text)
