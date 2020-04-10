@@ -20,21 +20,18 @@ driver = webdriver.Chrome('/usr/local/bin/chromedriver', options = options)
 
 
 ## modifying the query here
-url = 'https://www.nseindia.com'
+url = 'https://www.nseindia.com/market-data/live-market-indices'
 
 
 driver.get(url)
-print(driver.page_source)
+# print(driver.page_source)
 
 # time.sleep(5)
 print('Page loaded')
 
-# //product-template/div/div[4]/div[3]/div/div[1]/h4/span[2]/span
-# //product-template/div/div[4]/div[1]/a
-
 # elementname = driver.find_element(By.XPATH, '/html/body/div[7]/div[1]/section[1]/div/div/div/div/div[1]/div[2]/div/div/nav/div/div/a[1]/div/p[2]')
 
 time.sleep(5)
-element = driver.find_elements_by_xpath('/html/body/div[7]/div[1]/section[1]/div/div/div/div/div[1]/div[2]/div/div/nav/div/div/a[1]/div/p[2]')
-
-print(element[0].text)
+# element = driver.find_elements_by_xpath('/html/body/div[7]/div[1]/section[1]/div/div/div/div/div[1]/div[2]/div/div/nav/div/div/a[1]/div/p[2]')
+element2 = driver.find_element_by_xpath('//*[@id="liveindexTable"]')
+print(element2.text)
