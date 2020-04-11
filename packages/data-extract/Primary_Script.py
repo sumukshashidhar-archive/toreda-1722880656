@@ -42,7 +42,7 @@ def get():
 	pushcmd = push_cmd + n + push_cmd_2
 	push(pushcmd)
 
-schedule.every().day().at("21:00").do(get)
+schedule.every().day.at("21:00").do(get)
 
 
 #for testing
