@@ -45,6 +45,9 @@ def get():
 schedule.every.day().at("21:00").do(get)
 
 
+#for testing
+get()
+
 while True:
 	schedule.run_pending()
 	time.sleep(10000)
