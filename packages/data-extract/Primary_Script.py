@@ -14,7 +14,7 @@ from datetime import date
 import time
 import schedule
 
-path = os.path.realpath('..')[:-8] + 'data' + '/indices' #path of the dataset_folder
+path = os.path.realpath('..')[:-8] + 'data' + '/indices/' #path of the dataset_folder
 push_cmd_1 = 'git add ' + path + ' && git commit -a -m "File Commit: '
 push_cmd_2 = '" && git push'
 
@@ -39,7 +39,7 @@ def get():
 	com = cmd + n
 	get_csv(com)
 	time.sleep(100)
-	pushcmd = push_cmd_1 + n + push_cmd_2
+	pushcmd = push_cmd_1 + n[:-14] + push_cmd_2
 	push(pushcmd)
 
 schedule.every().day.at("21:00").do(get)
