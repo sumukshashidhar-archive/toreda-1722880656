@@ -46,9 +46,9 @@ schedule.every().day.at("21:00").do(get)
 
 
 #for testing
-# get()
+get()
 
 while True:
 	schedule.run_pending()
 	print("Waiting")
-	time.sleep(10000)
+	time.sleep(1000)
