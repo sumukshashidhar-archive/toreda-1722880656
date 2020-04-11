@@ -20,8 +20,10 @@ driver = webdriver.Chrome('/usr/local/bin/chromedriver', options = options)
 
 
 ## modifying the query here
-url = 'https://www.nseindia.com/market-data/live-market-indices'
+url = 'https://www.moneyworks4me.com/best-index/nse-stocks/top-nse500-companies-list/'
 
+
+#//*[@id="table-data"]
 
 driver.get(url)
 # print(driver.page_source)
@@ -33,7 +35,7 @@ print('Page loaded')
 
 time.sleep(5)
 # element = driver.find_elements_by_xpath('/html/body/div[7]/div[1]/section[1]/div/div/div/div/div[1]/div[2]/div/div/nav/div/div/a[1]/div/p[2]')
-element2 = driver.find_element_by_xpath('//*[@id="liveindexTable"]')
+element2 = driver.find_element_by_xpath('//*[@id="table-data"]')
 # print(element2.text)
 
 f1 = open('test.txt', 'w')
