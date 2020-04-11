@@ -38,8 +38,8 @@ def get():
 	n = filename()
 	com = cmd + n
 	get_csv(com)
-	time.sleep(100)
-	pushcmd = push_cmd + n + push_cmd_2
+	# time.sleep(100)
+	pushcmd = push_cmd_1 + n + push_cmd_2
 	push(pushcmd)
 
 schedule.every().day.at("21:00").do(get)
