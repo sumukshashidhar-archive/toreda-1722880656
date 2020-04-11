@@ -44,4 +44,4 @@ schedule.every.day().at("21:00").do(get)
 
 while True:
 	schedule.run_pending()
-	time.sleep(1000)
+	time.sleep(10000)
