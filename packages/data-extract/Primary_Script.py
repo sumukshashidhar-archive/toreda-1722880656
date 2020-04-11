@@ -12,7 +12,7 @@ import time
 import schedule
 
 
-path = os.path.realpath('..')[:-8] #path of the entire folder
+path = os.path.realpath('..')[:-8] + 'data' + '/indices' #path of the dataset_folder
 
 def get_csv(command):
 	os.system(command)
