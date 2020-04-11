@@ -15,7 +15,7 @@ import time
 import schedule
 
 path = os.path.realpath('..')[:-8] + 'data' + '/indices' #path of the dataset_folder
-push_cmd_1 = 'git add' + path + ' && git commit -a -m "File Commit: '
+push_cmd_1 = 'git add ' + path + ' && git commit -a -m "File Commit: '
 push_cmd_2 = '" && git push'
 
 def get_csv(command):
