@@ -66,14 +66,17 @@ def get_data_for_all(STOCK_NAME):
 	for DATE_RANGE in datels:
 		OUTPUT_NAME = '"' + str(STOCK_NAME + str(DATE_RANGE[0]) + '_'+ str(DATE_RANGE[1]) + '.csv') + '"'
 		cmd = urlmake(STOCK_NAME, DATE_RANGE, OUTPUT_NAME)
-		print("EXECUTION IS", cmd)
+		# print("EXECUTION IS", cmd)
 		get_csv(cmd)
 		time.sleep(5)
 		push(OUTPUT_NAME)
 
 
-inp = input("Please enter the stock name you wish to scrape")
-get_data_for_all(inp)
+# inp = input("Please enter the stock name you wish to scrape")
+ls_stocks = ['MARUTI', 'CIPLA', 'TITAN']
+for stock in ls_stocks:
+	get_data_for_all(stock)
+
 
 #
 #
