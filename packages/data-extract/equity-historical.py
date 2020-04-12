@@ -78,7 +78,7 @@ def get_data_for_all(STOCK_NAME, limit):
 a = True
 inp = []
 while a:
-	x = input("Enter a Stock Symbol or blank to exit")
+	x = input("Enter a Stock Symbol or blank to exit: \n")
 	if x == '':
 		a = False
 		break
@@ -91,7 +91,7 @@ while a:
 limit = int(input("Please enter the furthest date that you wish to scrape back to. (DEFAULT IS 2010)"))
 
 
-for stock in ls_stocks:
+for stock in inp:
 	get_data_for_all(stock, limit)
 
 
