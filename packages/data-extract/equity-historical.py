@@ -50,7 +50,7 @@ def urlmake(STOCK_NAME, DATE_RANGE, OUTPUT_NAME):
 
 ## defining some constants
 
-def get_data_for_all(STOCK_NAME):
+def get_data_for_all(STOCK_NAME, limit):
 	'''
 
 	:param STOCK_NAME: the name of the stock that you want to scrape
@@ -59,7 +59,7 @@ def get_data_for_all(STOCK_NAME):
 	t = str(date.today())
 	t = int(t[:4])
 	datels = []
-	while t - 2 >= 2010:
+	while t - 2 >= limit:
 		r = (t - 2, t)
 		datels.append(r)
 		t = t - 2
@@ -72,10 +72,27 @@ def get_data_for_all(STOCK_NAME):
 		push(OUTPUT_NAME)
 
 
-# inp = input("Please enter the stock name you wish to scrape")
-ls_stocks = ['AXISBANK', 'ZEEL', 'INFRATEL']
+
+
+
+a = True
+inp = []
+while a:
+	x = input("Enter a Stock Symbol or blank to exit")
+	if x == '':
+		a = False
+		break
+	else:
+		inp.append(x)
+
+
+
+# inp = eval(input("Please enter the stock names you wish to scrape in a proper python list format"))
+limit = int(input("Please enter the furthest date that you wish to scrape back to. (DEFAULT IS 2010)"))
+
+
 for stock in ls_stocks:
-	get_data_for_all(stock)
+	get_data_for_all(stock, limit)
 
 
 #

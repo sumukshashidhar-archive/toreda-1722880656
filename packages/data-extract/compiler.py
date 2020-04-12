@@ -3,8 +3,14 @@ import os
 
 
 dictionary = {}
+git_commit_path =  os.path.realpath('..')[:-8]
 
 files = os.listdir("./../../data/historical")
+
+def push(FILENAME):
+	pushcmd = 'git add ' + str(git_commit_path) + ' && git commit -a -m "File Commit: ' + str(FILENAME) + '" && git push'
+	os.system(pushcmd)
+
 
 def compiler(FILE_LIST, name):
 	dfs = []
@@ -13,6 +19,7 @@ def compiler(FILE_LIST, name):
 	final_frame = pd.concat(dfs, ignore_index=True)
 	expstring = './../../data/historical_compiled/' + name + '.csv'
 	final_frame.to_csv(expstring)
+	push(name)
 
 
 
