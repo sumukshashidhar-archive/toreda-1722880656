@@ -6,7 +6,7 @@ dictionary = {}
 git_commit_path =  os.path.realpath('..')[:-8]
 
 files = os.listdir("./../../data/historical")
-
+file.sort()
 def push(FILENAME):
 	pushcmd = 'git add ' + str(git_commit_path) + ' && git commit -a -m "File Commit: ' + str(FILENAME) + '" && git push'
 	os.system(pushcmd)

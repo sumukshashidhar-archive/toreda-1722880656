@@ -14,7 +14,7 @@
 import os
 from datetime import date
 import time
-import schedule
+# import schedule
 
 
 ## change this if you move this file elsewhere
