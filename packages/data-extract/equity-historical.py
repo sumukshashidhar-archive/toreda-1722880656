@@ -16,41 +16,82 @@ from datetime import date
 import time
 import schedule
 
-path = os.path.realpath('..')[:-8] + 'data' + '/indices/' #path of the dataset_folder
-push_cmd_1 = 'git add ' + path + ' && git commit -a -m "File Commit: '
-push_cmd_2 = '" && git push'
 
+## change this if you move this file elsewhere
+path = os.path.realpath('..')[:-8] + 'data' + '/historical/' #path of the dataset_folder
+
+
+
+# to retrieve data from the NSE Server
 def get_csv(command):
 	os.system(command)
 
-
-def push(pushcmd):
+## to push to github
+def push(FILENAME):
+	pushcmd = 'git add ' + str(path) + ' && git commit -a -m "File Commit: ' + str(FILENAME) + '" && git push'
 	os.system(pushcmd)
 
+#
+# def filename():
+# 	name = path + str(date.today()) + '.csv'
+# 	return name
+#
 
-def filename():
-	name = path + str(date.today()) + '.csv'
-	return name
 
+def urlmake(STOCK_NAME, DATE_RANGE, OUTPUT_NAME):
+	'''
+
+	:param STOCK_NAME: STRING the name of the stock that you want to scrape data for
+	:param DATE_RANGE: a tuple with the start year and the end year
+	:return: string which is the command url
+	'''
+	cmd = 'curl -A "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0" "https://www.nseindia.com/api/historical/cm/equity?symbol='+STOCK_NAME+'&series=[%22EQ%22]&from=11-04-'+str(DATE_RANGE[0])+'&to=11-04-'+str(DATE_RANGE[1])+'&csv=true" -o ' + str(OUTPUT_NAME)
+	return cmd
 
 ## defining some constants
-cmd = 'curl -A "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0" https://www.nseindia.com/api/allIndices?csv=true -o '
 
-def get():
-	n = filename()
-	com = cmd + n
-	get_csv(com)
-	time.sleep(100)
-	pushcmd = push_cmd_1 + n[:-14] + push_cmd_2
-	push(pushcmd)
+def get_data_for_all(STOCK_NAME):
+	'''
 
-schedule.every().day.at("21:00").do(get)
+	:param STOCK_NAME: the name of the stock that you want to scrape
+	:return:
+	'''
+	t = str(date.today())
+	t = int(t[:4])
+	datels = []
+	while t - 2 >= 2010:
+		r = (t - 2, t)
+		datels.append(r)
+		t = t - 2
+	for DATE_RANGE in datels:
+		OUTPUT_NAME = '"' + str(STOCK_NAME + str(DATE_RANGE[0]) + '_'+ str(DATE_RANGE[1]) + '.csv') + '"'
+		cmd = urlmake(STOCK_NAME, DATE_RANGE, OUTPUT_NAME)
+		print("EXECUTION IS", cmd)
+		get_csv(cmd)
+		time.sleep(5)
+		push(OUTPUT_NAME)
+
+
+inp = input("Please enter the stock name you wish to scrape")
+get_data_for_all(inp)
+
+#
+#
+# def get():
+# 	n = filename()
+# 	com = cmd + n
+# 	get_csv(com)
+# 	time.sleep(100)
+# 	pushcmd = push_cmd_1 + n[:-14] + push_cmd_2
+# 	push(pushcmd)
+#
+# schedule.every().day.at("21:00").do(get)
 
 
 #for testing
 # get()
-
-while True:
-	schedule.run_pending()
-	print("Waiting")
-	time.sleep(10000)
+#
+# while True:
+# 	schedule.run_pending()
+# 	print("Waiting")
+# 	time.sleep(10000)
