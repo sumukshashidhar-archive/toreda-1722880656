@@ -19,7 +19,7 @@ import schedule
 
 ## change this if you move this file elsewhere
 path = os.path.realpath('..')[:-8] + 'data' + '/historical/' #path of the dataset_folder
-
+git_commit_path =  os.path.realpath('..')[:-8]
 
 
 # to retrieve data from the NSE Server
@@ -28,7 +28,7 @@ def get_csv(command):
 
 ## to push to github
 def push(FILENAME):
-	pushcmd = 'git add ' + str(path) + ' && git commit -a -m "File Commit: ' + str(FILENAME) + '" && git push'
+	pushcmd = 'git add ' + str(git_commit_path) + ' && git commit -a -m "File Commit: ' + str(FILENAME) + '" && git push'
 	os.system(pushcmd)
 
 #
@@ -73,7 +73,7 @@ def get_data_for_all(STOCK_NAME):
 
 
 # inp = input("Please enter the stock name you wish to scrape")
-ls_stocks = ['MARUTI', 'CIPLA', 'TITAN']
+ls_stocks = ['AXISBANK', 'ZEEL', 'INFRATEL']
 for stock in ls_stocks:
 	get_data_for_all(stock)
 
