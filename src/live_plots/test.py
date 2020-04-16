@@ -11,7 +11,7 @@ ax1 = fig.add_subplot(1, 1, 1)
 
 def animate(i):
     graph_data = open('example.txt','r').read()
-    lines = graph_data.split('\n')
+    lines = graph_data.split('\n') ## reading new lines here
     xs = []
     ys = []
     for line in lines:
