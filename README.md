@@ -1,1 +1,1 @@
-# school-project
+# Trendr
