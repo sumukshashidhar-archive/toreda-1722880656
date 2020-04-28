@@ -26,7 +26,7 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install django
         python -m pip install django-admin
-        pip install -r requirements.txt
+        pip install -r src/accounts/requirements.txt
     - name: Run Tests
       run: |
         python src/accounts/manage.py test
