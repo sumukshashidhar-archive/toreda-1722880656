@@ -11,3 +11,4 @@
 
     `python3 manage.py migrate`
 
+    Refer the Django Docs for the [migration](https://docs.djangoproject.com/en/3.0/topics/migrations/) command
