@@ -27,4 +27,4 @@ jobs:
         pip install -r src/auth/requirements.txt
     - name: Run Tests
       run: |
-        python src/auth/manage.py runserver
+        python src/auth/source/manage.py runserver
