@@ -12,6 +12,8 @@ As of May 2020, the development of Toreda is closed source, due to intellectual 
 
 Documentation is currently being written to allow the community to contribute. Commercial use limitations will be implemented shortly
 
+Visit [this](https://github.com/sumukshashidhar/toreda/blob/master/docs/system-design.md), for the stack details, as well as system design
+
 
 # Using Toreda
 
