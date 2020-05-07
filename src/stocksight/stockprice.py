@@ -1,13 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""stockprice.py - get stock price from Yahoo and add to
-Elasticsearch.
-See README.md or https://github.com/shirosaidev/stocksight
+"""
+See https://github.com/sumukshashidhar/toreda
 for more information.
 
-Copyright (C) Chris Park 2018-2020
-stocksight is released under the Apache 2.0 license. See
-LICENSE for the full license text.
+Copyright (C) Sumuk Shashidhar 2018-2020
 """
 
 import time
@@ -16,6 +13,8 @@ import re
 import argparse
 import logging
 import sys
+
+
 try:
     from elasticsearch5 import Elasticsearch
 except ImportError:
@@ -183,12 +182,12 @@ if __name__ == '__main__':
             color = '35m'
 
         banner = """\033[%s
-       _                     _                 
-     _| |_ _           _   _| |_ _     _   _   
-    |   __| |_ ___ ___| |_|   __|_|___| |_| |_ 
+       _                     _
+     _| |_ _           _   _| |_ _     _   _
+    |   __| |_ ___ ___| |_|   __|_|___| |_| |_
     |__   |  _| . |  _| '_|__   | | . |   |  _|
-    |_   _|_| |___|___|_,_|_   _|_|_  |_|_|_|  
-      |_|                   |_|   |___|                
+    |_   _|_| |___|___|_,_|_   _|_|_  |_|_|_|
+      |_|                   |_|   |___|
           :) = +$   :( = -$    v%s
     GitHub repo https://github.com/shirosaidev/stocksight
     StockSight website https://stocksight.diskoverspace.com
