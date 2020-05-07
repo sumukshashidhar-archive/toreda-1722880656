@@ -134,8 +134,6 @@ def sentiment_analysis(text):
     algorithm to figure out if sentiment is positive, negative or neutral
     uses sentiment polarity from TextBlob, VADER Sentiment and
     sentiment from text-processing URL
-    could be made better :)
-    Uploads sentiment to stocksight website.
     """
 
     # pass text into sentiment url
@@ -157,6 +155,7 @@ def sentiment_analysis(text):
 
     # determine sentiment from our sources
     if sentiment_url is None:
+        #threshold values
         if text_tb.sentiment.polarity < 0 and text_vs['compound'] <= -0.05:
             sentiment = "negative"
         elif text_tb.sentiment.polarity > 0 and text_vs['compound'] >= 0.05:
@@ -164,6 +163,7 @@ def sentiment_analysis(text):
         else:
             sentiment = "neutral"
     else:
+        # this works if the above function executes properly
         if text_tb.sentiment.polarity < 0 and text_vs['compound'] <= -0.05 and sentiment_url == "negative":
             sentiment = "negative"
         elif text_tb.sentiment.polarity > 0 and text_vs['compound'] >= 0.05 and sentiment_url == "positive":
@@ -172,17 +172,18 @@ def sentiment_analysis(text):
             sentiment = "neutral"
 
     # calculate average and upload to sentiment website
-    if args.upload:
-        if sentiment_url:
-            neg_avg = (text_vs['neg'] + neg_url) / 2
-            pos_avg = (text_vs['pos'] + pos_url) / 2
-            neutral_avg = (text_vs['neu'] + neu_url) / 2
-            upload_sentiment(neg_avg, pos_avg, neutral_avg)
-        else:
-            neg_avg = text_vs['neg']
-            pos_avg = text_vs['pos']
-            neutral_avg = text_vs['neu']
-            upload_sentiment(neg_avg, pos_avg, neutral_avg)
+    #TODO:REMOVE
+    # if args.upload:
+    #     if sentiment_url:
+    #         neg_avg = (text_vs['neg'] + neg_url) / 2
+    #         pos_avg = (text_vs['pos'] + pos_url) / 2
+    #         neutral_avg = (text_vs['neu'] + neu_url) / 2
+    #         upload_sentiment(neg_avg, pos_avg, neutral_avg)
+    #     else:
+    #         neg_avg = text_vs['neg']
+    #         pos_avg = text_vs['pos']
+    #         neutral_avg = text_vs['neu']
+    #         upload_sentiment(neg_avg, pos_avg, neutral_avg)
 
     # calculate average polarity from TextBlob and VADER
     polarity = (text_tb.sentiment.polarity + text_vs['compound']) / 2
