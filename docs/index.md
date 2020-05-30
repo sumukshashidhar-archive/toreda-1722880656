@@ -22,3 +22,8 @@ Toreda uses Deep Learning to project stock prices and plays out "episodes" to de
 For now, we're giving away free lifetime keys, which you can obtain [here](API-KEYS.md)
 
 
+# Sentiment Analysis Module
+
+You can find the sentiment analysis module [here](sent-v1.html)
+
+
