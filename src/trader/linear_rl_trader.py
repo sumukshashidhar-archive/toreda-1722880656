@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import plotly.express as px
 from datetime import datetime
 import itertools
 import argparse
@@ -19,7 +19,7 @@ def get_data():
   # 0 = AAPL
   # 1 = MSI
   # 2 = SBUX
-  df = pd.read_csv('../tf2.0/aapl_msi_sbux.csv')
+  df = pd.read_csv('aapl_msi_sbux.csv')
   return df.values
 
 
@@ -314,7 +314,7 @@ if __name__ == '__main__':
   # config
   models_folder = 'linear_rl_trader_models'
   rewards_folder = 'linear_rl_trader_rewards'
-  num_episodes = 2000
+  num_episodes = 20
   batch_size = 32
   initial_investment = 20000
 
@@ -377,9 +377,9 @@ if __name__ == '__main__':
       pickle.dump(scaler, f)
 
     # plot losses
-    plt.plot(agent.model.losses)
-    plt.show()
-
+    fig = px.histogram(x=agent.model.losses)
+    # plt.plot(agent.model.losses)
+    fig.show()
 
   # save portfolio value for each episode
   np.save(f'{rewards_folder}/{args.mode}.npy', portfolio_value)
