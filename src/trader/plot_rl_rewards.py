@@ -12,7 +12,7 @@ a = np.load(f'linear_rl_trader_rewards/{args.mode}.npy')
 
 print(f"average reward: {a.mean():.2f}, min: {a.min():.2f}, max: {a.max():.2f}")
 
-fig = px.histogram(x=a)
+fig = px.histogram(x=a, marginal='violin', template='ggplot2')
 fig.show()
 
 
