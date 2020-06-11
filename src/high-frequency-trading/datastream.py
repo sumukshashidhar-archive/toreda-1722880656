@@ -3,6 +3,7 @@
 import pandas as pd
 import time
 import os
+import visualize
 
 
 
@@ -17,9 +18,9 @@ def refreshData(SYM, INT, KEY):
 	filepath = f'./logs/streamdata-{SYMBOL}-{INTERVAL}.csv'
 	a = time.time()	
 	df = pd.read_csv(url)
-	
+	print(df.head())
 	df.to_csv(filepath)
-
+	visualize.viz(df)
 	b = time.time()
 
 	r = b - a
@@ -27,4 +28,7 @@ def refreshData(SYM, INT, KEY):
 	with open('./logs/timedata.csv', 'a') as f:
 		f.write(f'{r}\n')
 
+def buy_or_sell():
 
+
+refreshData('INFY.BO', '1min', 'VJOJOA8WIN0QEPCF')
