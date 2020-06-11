@@ -25,6 +25,6 @@ def refreshData(SYM, INT, KEY):
 	r = b - a
 	
 	with open('./logs/timedata.csv', 'a') as f:
-		f.write(f'{r}\n'
+		f.write(f'{r}\n')
 
 

@@ -1,8 +1,11 @@
 import datastream
 from sentiment import sentiment_analysis
+import config
 
 
-print(sentiment_analysis('sumuk sucks so hard'))
+print(STOCKS_TO_TRACK)
+
+
 
 
 
