@@ -1,5 +1,5 @@
 # toreda
-A high frequency trading bot built on GO and Python.
+A high frequency trading bot built on Python.
 
 
 # How to contribute?
