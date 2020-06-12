@@ -14,6 +14,7 @@ while True:
     if diff == None:
         time.sleep(60)
     else:
-        ## read the row difference and return
-        get_prediction()
-        mysql_interfacer.served()
+        for i in diff:
+            ## read the row difference and return
+            get_prediction()
+            mysql_interfacer.served()
