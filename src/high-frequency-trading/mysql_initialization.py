@@ -20,11 +20,11 @@ def make_response_table():
     pass
 
 
-def make_users_table():
-    """
-    Table where we store user data
-    """
-    pass
+# def make_users_table():
+#     """
+#     Table where we store user data
+#     """
+#     pass
 
 
 def make_logs_table():
