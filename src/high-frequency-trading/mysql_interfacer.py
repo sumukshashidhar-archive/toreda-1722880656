@@ -24,12 +24,13 @@ def add_to_response():
     adds the given to the response table
     """
 
-def served():
+def served(ticker, lookupstep, epochs, accuracy_score, price_prediction, filepath):
+    # TODO: Convert all of these into keyword arguments with the same names, like ive done in the add_to_response function
     """
     Will call this function to notify that this request has been served
     """
     delete_from_requests()
-    add_to_response()
+    add_to_response(filepath=filepath)
 
 
 def get_new_requests(old, new):
