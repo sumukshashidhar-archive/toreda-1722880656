@@ -1,14 +1,16 @@
 import datastream
 from sentiment import sentiment_analysis
-import config as env
-
-
-print(env.STOCKS_TO_TRACK)
+from lstmpredict import get_prediction
 
 
 
-def determine_action():
 
+
+
+
+
+
+get_prediction()
 
 
 
