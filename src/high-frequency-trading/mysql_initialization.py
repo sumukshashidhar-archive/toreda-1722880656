@@ -29,7 +29,7 @@ def make_response_table():
     """
     Makes the response table that moves the requests once they are served
     """
-    
+    mycursor.execute("CREATE TABLE response (id INT AUTO_INCREMENT PRIMARY KEY, uuid varchar(36), lookupstep int, ticker VARCHAR(255), responsedate date, epochs int, filepath varchar(100), priceprediction int")
     pass
 
 
