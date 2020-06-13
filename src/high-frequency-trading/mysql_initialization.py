@@ -21,7 +21,7 @@ def make_request_table():
     Makes a requests table
     Must contain the stock it is requesting, the date it is requesting it on, accuracy of prediction it wants and number of days after that it wants the predicted price
     """
-    mycursor.execute("CREATE TABLE requests (id INT AUTO_INCREMENT, uuid varchar(36) PRIMARY KEY, lookupstep int, ticker VARCHAR(255), reqdate date, epochs int)")
+    mycursor.execute("CREATE TABLE requests (id INT AUTO_INCREMENT PRIMARY KEY, uuid varchar(36), lookupstep int, ticker VARCHAR(255), reqdate date, epochs int)")
     
     pass
 
