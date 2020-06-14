@@ -1,5 +1,6 @@
 """
 Main trading file
+The one stop shop to run scripts
 """
 
 import datastream
