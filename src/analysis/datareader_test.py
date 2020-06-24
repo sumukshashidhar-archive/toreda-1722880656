@@ -11,3 +11,8 @@ class Test(unittest.TestCase):
     def test_select_one_key(self):
         a, _ = datareader.select_one_key(datareader.read_keys())
         self.assertEqual(type(a), type(''), f"Did not get back a string or a key, got back {a}")
+
+    def test_interday(self):
+        keydb = datareader.read_keys()
+        key, keydb = datareader.select_one_key(keydb)
+        

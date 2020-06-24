@@ -50,12 +50,13 @@ def select_one_key(keydb):
     return max_time_key, keydb
 
 
-def interday(self, ticker, interval):
+def interday(self, ticker, interval, key):
     """
     Returns interday data
     """
-    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={ticker}&interval={interval}&apikey={select_one_key(keydb)}&datatype=csv'
-    pass
+    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={ticker}&interval={interval}&apikey={key}&datatype=csv'
+    df = pd.read_csv(url)
+    return df
 
 
 
