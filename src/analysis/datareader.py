@@ -35,11 +35,24 @@ def create_keylogs(keylist):
     """
     d = {}
     for i in keylist:
-        d[i] = None
+        d[i] = 0
     return d
 
 def select_one_key(keydb):
-    
+    """
+    Returns the least recently used key in the current dictionary. This assists with high frequency data analysis.
+
+    @params
+    keydb = dictionary
+    """
+    cur_time = time.time()
+    max_time = 0
+    max_time_key = None
+    for i in keydb.keys:
+        if cur_time - keydb[i] > max_time:
+            max_time_key = i
+            max_time = cur_time - keydb[i]
+    return max_time_key
 
 
 def interday(self, ticker):
@@ -50,6 +63,6 @@ def interday(self, ticker):
     pass
 
 
-
+select_one_key(keydb=create_keylogs(read_keys()))
 
 
