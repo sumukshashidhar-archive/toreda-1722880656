@@ -12,3 +12,7 @@ class Test(unittest.TestCase):
         x = datareader.create_keylogs(datareader.read_keys())
         self.assertEqual(type(x), type({}), "Did not return a dictionary")
         self.assertNotEqual(len(x.keys), 0, "dictionary does not have anything")
+
+    def test_select_one_key(self):
+        a = datareader.select_one_key(keydb=datareader.create_keylogs(datareader.read_keys()))
+        self.assertEqual(type(a), type(''), f"Did not get back a string or a key, got back {a}")

@@ -52,17 +52,17 @@ def select_one_key(keydb):
         if cur_time - keydb[i] > max_time:
             max_time_key = i
             max_time = cur_time - keydb[i]
-    return max_time_key
+    return max_time_key, keydb 
 
 
-def interday(self, ticker):
+def interday(self, ticker, interval):
     """
     Returns interday data
     """
-    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={SYMBOL}&interval={INTERVAL}&apikey={API_KEY}&datatype=csv'
+    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={ticker}&interval={interval}&apikey={select_one_key(keydb)}&datatype=csv'
     pass
 
 
-select_one_key(keydb=create_keylogs(read_keys()))
+
 
 
