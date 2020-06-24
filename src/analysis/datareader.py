@@ -1,7 +1,5 @@
 import pandas as pd
 import time
-from datetime import date
-
 
 
 ## Constants
@@ -16,7 +14,13 @@ def read_keys():
     global keylist
     with open(KEYPATH, 'r') as f:
         keylist = f.readlines()
+    keylist = [x.rstrip('\n') for x in keylist]
+    return keylist
 
+def create_keylogs():
+
+
+x = read_keys()
 print(keylist)
 
 

@@ -1,14 +1,12 @@
 import unittest
 
-from datareader import testingtest
+import datareader
 
 class Test(unittest.TestCase):
 
-    def test_testingtest(self):
-        # testing the test module
-
-        self.assertEqual(testingtest(), True)
-        self.assertEqual(testingtest(), False)
-
+    def test_read_keys(self):
+        x = datareader.read_keys()
+        self.assertEqual(type(x), type([]), "Did not return a list")
+        self.assertNotEqual(len(x), 0, "list does not have anything")
 
 
