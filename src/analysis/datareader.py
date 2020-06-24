@@ -26,4 +26,9 @@ def create_keylogs(keylist):
 
 
 
+def interday(self, ticker):
+    url = f''
+    pass
+
+
 
