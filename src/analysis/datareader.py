@@ -50,7 +50,7 @@ def select_one_key(keydb):
     return max_time_key, keydb
 
 
-def interday(self, ticker, interval, key):
+def interday(ticker, interval, key):
     """
     Returns interday data
     """
