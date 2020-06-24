@@ -1,8 +1,12 @@
+from datetime import date
+from datetime import timedelta
 import pandas as pd
 import time
 import logging
 logging.basicConfig(level=logging.DEBUG, filename='./analysis/logs/general.log')
 logger = logging.getLogger()
+
+
 
 """
 Constants Declaration
@@ -57,7 +61,21 @@ def intraday(ticker, interval, key):
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={ticker}&interval={interval}&apikey={key}&datatype=csv'
     df = pd.read_csv(url)
     df = df.sort_values(by='timestamp')
+    df = df.reset_index()
     logger.info(f'Got the dataframe intraday using key {key}')
+    flag = True
+    ctr = 40
+    while flag:
+        try:
+            ti = ' 23:' + str(ctr) + ':00'
+            df = df.iloc[df[df['timestamp'] == str(str(date.today() - timedelta(days=1)) + ti)].index.values[0]:]
+            flag = False
+        except IndexError:
+            # print(f'failed for {ctr} continuing')
+            ctr += 1
+            flag = True
+            if ctr >= 60:
+                flag = False
     return df
 
 

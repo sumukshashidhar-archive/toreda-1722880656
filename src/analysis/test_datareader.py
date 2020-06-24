@@ -16,12 +16,12 @@ class Test(unittest.TestCase):
     def test_intraday(self):
         keydb = datareader.read_keys()
         key, keydb = datareader.select_one_key(keydb)
-        df = datareader.intraday(ticker='AAPL', interval='1min', key=key)
-        print(df)
+        df = datareader.intraday(ticker='INFY.BSE', interval='1min', key=key)
+        # print(df)
         self.assertEqual(type(df), type(pd.DataFrame()), "did not get a dataframe")
 
     def test_interday(self):
         keydb = datareader.read_keys()
         key, keydb = datareader.select_one_key(keydb)
-        df = datareader.interday(ticker='AAPL', key=key)
+        df = datareader.interday(ticker='INFY.BSE', key=key)
         self.assertEqual(type(df), type(pd.DataFrame()), "did not get a dataframe")
