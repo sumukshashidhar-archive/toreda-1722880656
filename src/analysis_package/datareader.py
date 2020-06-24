@@ -8,6 +8,9 @@ from datetime import date
 KEYPATH = 'keys.pem'
 
 
+def testingtest():
+    return True
+
 keylist = []
 def read_keys():
     global keylist
@@ -15,3 +18,6 @@ def read_keys():
         keylist = f.readlines()
 
 print(keylist)
+
+
+
