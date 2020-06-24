@@ -10,3 +10,9 @@ class Test(unittest.TestCase):
         self.assertNotEqual(len(x), 0, "list does not have anything")
 
 
+    def test_create_keylogs(self):
+        x = datareader.create_keylogs(datareader.read_keys())
+        self.assertEqual(type(x), type({}), "Did not return a dictionary")
+        self.assertNotEqual(len(x.keys), 0, "dictionary does not have anything")
+
+
