@@ -50,12 +50,25 @@ def select_one_key(keydb):
     return max_time_key, keydb
 
 
-def interday(ticker, interval, key):
+def intraday(ticker, interval, key):
     """
     Returns interday data
     """
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={ticker}&interval={interval}&apikey={key}&datatype=csv'
     df = pd.read_csv(url)
+    df = df.sort_values(by='timestamp')
+    logger.info(f'Got the dataframe intraday using key {key}')
+    return df
+
+
+def interday(ticker, key):
+    """
+    Returns the timeseries values for interday trading (long range)
+    """
+    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker}&apikey={key}&datatype=csv'
+    df = pd.read_csv(url)
+    df = df.sort_values(by='timestamp')
+    logger.info(f'Got the dataframe interday using key {key}')
     return df
 
 
