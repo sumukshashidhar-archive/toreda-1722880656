@@ -4,6 +4,7 @@ import webbrowser
 import os
 from datetime import timedelta
 import plotly.graph_objects as go
+import time
 
 def open_webbrowser(to_open, filename):
     if to_open:
@@ -32,12 +33,14 @@ def plot_intraday(df, ticker, to_open=False):
     return True, PLOT_FILEPATH
 
 
-def MAV(df, ticker, freq, to_open=False):
-    PLOT_FILEPATH = f'./../Generated_Graphs/mavs/{freq}/{ticker}-{date.today()}.html'
+def mav(df, ticker, freq='intra', intervals=[5, 10, 20], to_open=False):
+    PLOT_FILEPATH = f'./../Generated_Graphs/mavs/{freq}/{len(intervals)}-{ticker}-{date.today()}-{time.time()}.html'
     fig = px.line(template='plotly_dark')
-    fig.add_scatter(y = df['WMA5'], mode='lines', name=f'WMA - 5 {freq}')
-    fig.add_scatter(y = df['WMA10'], mode='lines', name=f'WMA - 10 {freq}')
-    fig.add_scatter(y = df['WMA25'], mode='lines', name=f'WMA - 25 {freq}')
+    for i in intervals:
+        fig.add_scatter(y = df[f'WMA{i}'], mode='lines', name=f'WMA - {i} {freq}')
     fig.add_scatter(y = df['EWMA'], mode='lines', name='EWMA')
     fig.add_scatter(y = df['DEWMA'], mode='lines', name='DEWMA')
     fig.add_scatter(y = df['close'], mode='lines', name='Actual Closing Prices')
+    fig.write_html(PLOT_FILEPATH)
+    open_webbrowser(to_open, PLOT_FILEPATH)
+    return True, PLOT_FILEPATH
