@@ -93,7 +93,6 @@ def interday(ticker, key):
     """
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker}&apikey={key}&datatype=csv'
     df = pd.read_csv(url)
-    print(df)
     logger.info(f'Got the dataframe interday using key {key}')
     return df
 
