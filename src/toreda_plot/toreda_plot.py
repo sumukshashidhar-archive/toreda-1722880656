@@ -12,14 +12,14 @@ def open_webbrowser(to_open, filename):
 
 
 def get_histogram(data, freq, ticker, to_open=False):
-    FILEPATH = f'./../Generated_Graphs/pct_changes/{freq}/{ticker}-{date.today()}.html'
+    FILEPATH = f'./Generated_Graphs/pct_changes/{freq}/{ticker}-{date.today()}.html'
     fig = px.histogram(x=data)
     fig.write_html(FILEPATH)
     open_webbrowser(to_open, FILEPATH)
     return True, FILEPATH
 
 def plot_intraday(df, ticker, to_open=False):
-    PLOT_FILEPATH = f'./../Generated_Graphs/candlesticks/interday/{ticker}-{date.today()}.html'
+    PLOT_FILEPATH = f'./Generated_Graphs/candlesticks/interday/{ticker}-{date.today()}.html'
     fig1 = go.Figure(data=[go.Candlestick(x=df['timestamp'],
                                           open=df['open'],
                                           high=df['high'],
@@ -34,7 +34,7 @@ def plot_intraday(df, ticker, to_open=False):
 
 
 def mav(df, ticker, freq='intra', intervals=[5, 10, 20], to_open=False):
-    PLOT_FILEPATH = f'./../Generated_Graphs/mavs/{freq}/{len(intervals)}-{ticker}-{date.today()}-{time.time()}.html'
+    PLOT_FILEPATH = f'./Generated_Graphs/mavs/{freq}/{len(intervals)}-{ticker}-{date.today()}.html'
     fig = px.line(template='plotly_dark')
     for i in intervals:
         fig.add_scatter(y = df[f'WMA{i}'], mode='lines', name=f'WMA - {i} {freq}')
@@ -42,5 +42,14 @@ def mav(df, ticker, freq='intra', intervals=[5, 10, 20], to_open=False):
     fig.add_scatter(y = df['DEWMA'], mode='lines', name='DEWMA')
     fig.add_scatter(y = df['close'], mode='lines', name='Actual Closing Prices')
     fig.write_html(PLOT_FILEPATH)
-    open_webbrowser(to_open, PLOT_FILEPATH)
+    return True, PLOT_FILEPATH
+
+
+def mav_simple(df, ticker, freq='intra', intervals=[5, 20], to_open=False):
+    PLOT_FILEPATH = f'./Generated_Graphs/mavs/{freq}/{len(intervals)}-{ticker}-{date.today()}.html'
+    fig = px.line(template='plotly_dark')
+    for i in intervals:
+        fig.add_scatter(y = df[f'WMA{i}'], mode='lines', name=f'WMA - {i} {freq}')
+    fig.add_scatter(y = df['close'], mode='lines', name='Actual Closing Prices')
+    fig.write_html(PLOT_FILEPATH)
     return True, PLOT_FILEPATH

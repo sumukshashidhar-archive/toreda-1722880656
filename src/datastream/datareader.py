@@ -3,7 +3,8 @@ from datetime import timedelta
 import pandas as pd
 import time
 import logging
-logging.basicConfig(level=logging.DEBUG, filename='./analysis/logs/general.log')
+import os
+logging.basicConfig(level=logging.DEBUG, filename='./logs/analysis/general.log', format='%(levelname)s:%(name)s:%(asctime)s:%(message)s', filemode='w')
 logger = logging.getLogger()
 
 
@@ -11,7 +12,7 @@ logger = logging.getLogger()
 """
 Constants Declaration
 """
-KEYPATH = './analysis/keys.pem'
+KEYPATH = os.path.realpath('./keys/keys.pem')
 
 """
 API - Key Reading and Writing Functions
@@ -60,7 +61,14 @@ def intraday(ticker, interval, key):
     """
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={ticker}&interval={interval}&apikey={key}&datatype=csv'
     df = pd.read_csv(url)
-    df = df.sort_values(by='timestamp')
+    try:
+        df = df.sort_values(by='timestamp')
+    except KeyError:
+        logger.critical(f'{ticker}-{interval}-{key}: Failed')
+        time.sleep(5)
+        df = pd.read_csv(url)
+        logger.fatal(f'Waited 5 secs. Now checking again')
+        df.sort_values(by='timestamp')
     df = df.reset_index()
     logger.info(f'Got the dataframe intraday using key {key}')
     flag = True
@@ -85,7 +93,7 @@ def interday(ticker, key):
     """
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker}&apikey={key}&datatype=csv'
     df = pd.read_csv(url)
-    df = df.sort_values(by='timestamp')
+    print(df)
     logger.info(f'Got the dataframe interday using key {key}')
     return df
 
