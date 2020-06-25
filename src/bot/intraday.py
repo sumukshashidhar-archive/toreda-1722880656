@@ -1,6 +1,4 @@
-import sys
-import os
-sys.path.append("..")
+
 import pandas as pd
 from analysis.mav import get_mavs as mav
 from datastream import datareader  as datareader
