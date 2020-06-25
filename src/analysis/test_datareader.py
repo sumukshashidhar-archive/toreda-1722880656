@@ -25,3 +25,14 @@ class Test(unittest.TestCase):
         key, keydb = datareader.select_one_key(keydb)
         df = datareader.interday(ticker='INFY.BSE', key=key)
         self.assertEqual(type(df), type(pd.DataFrame()), "did not get a dataframe")
+
+
+    def test_key_reset(self):
+        ls = []
+        keydb = datareader.read_keys()
+        for i in range(3):
+            key, keydb = datareader.select_one_key(keydb)
+            if key in ls:
+                self.assertEqual(False, True, "The key was used before")
+            else:
+                ls.append(key)
