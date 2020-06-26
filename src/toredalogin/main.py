@@ -24,6 +24,11 @@ mysql = MySQL(app)
 def login():
     # Output message if something goes wrong...
     msg = 'Output message if something goes wrong'
+        # Check if "username" and "password" POST requests exist (user submitted form)
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+        # Create variables for easy access
+        username = request.form['username']
+        password = request.form['password']
     return render_template('index.html', msg='Output message if something goes wrong')
 
 
