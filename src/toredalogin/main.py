@@ -75,7 +75,7 @@ def register():
         account = cursor.fetchone()
         # If account exists show error and validation checks
         if account:
-            msg = 'Account already exists!'
+            msg = 'Account already exists!Login to access given account'
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
             msg = 'Invalid email address!'
         elif not re.match(r'[A-Za-z0-9]+', username):
@@ -83,7 +83,7 @@ def register():
         elif not username or not password or not email:
             msg = 'Please fill out the form!'
         else:
-            # Account doesnt exists and the form data is valid, now insert new account into accounts table
+            # Account doesn't exist and all of the form data is valid, then insert new account into accounts table in DB
             cursor.execute('INSERT INTO accounts VALUES (NULL, %s, %s, %s)', (username, password, email,))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
@@ -94,7 +94,7 @@ def register():
     return render_template('register.html', msg=msg)
 
 
-# http://localhost:5000/pythinlogin/home - this will be the home page, only accessible for loggedin users
+# http://localhost:5000/pythinlogin/home - this will be the home page, only accessible for logged-in users
 @app.route('/pythonlogin/home')
 def home():
     # Check if user is loggedin
@@ -105,10 +105,10 @@ def home():
     return redirect(url_for('login'))
 
 
-# http://localhost:5000/pythinlogin/profile - this will be the profile page, only accessible for loggedin users
+# http://localhost:5000/pythinlogin/profile - this will be the profile page, only accessible for logged-in users
 @app.route('/pythonlogin/profile')
 def profile():
-    # Check if user is loggedin
+    # Check if user is logged in
     if 'loggedin' in session:
         # We need all the account info for the user so we can display it on the profile page
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -116,6 +116,6 @@ def profile():
         account = cursor.fetchone()
         # Show the profile page with account info
         return render_template('profile.html', account=account)
-    # User is not loggedin redirect to login page
+    # User is not loggedin, redirect to login page
     return redirect(url_for('login'))
 
